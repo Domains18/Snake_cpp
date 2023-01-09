@@ -178,3 +178,11 @@ void SnakeGame::ControllerInput(){
         }
     }
 }
+void SnakeGame::SetupGame(){
+    GameOver = false;
+    SnakeDirection= STOP;
+    SnakeHeadX = Width/2;
+    SnakeHeadY = Height/2;
+    FruitX = rand() % Width;
+    FruitY = rand() % Height;
+}
