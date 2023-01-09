@@ -247,3 +247,69 @@ void SnakeGame::PrintStage()
         printf("=");
     }
 }
+
+void SnakeGame::PrintStage()
+{
+    int prevX = SnakeX[0];
+    int prevY = SnakeY[0];
+    int prev2X, prev2Y;
+    SnakeX[0] = SnakeHeadX;
+    SnakeY[0] = SnakeHeadY;
+    for (int i = 1; i < SnakeBodyCount; i++)
+    {
+        prev2X = SnakeX[i];
+        prev2Y = SnakeY[i];
+        SnakeX[i] = prevX;
+        SnakeY[i] = prevY;
+        prevX = prev2X;
+        prevY = prev2Y;
+    }
+    switch (SnakeDirection)
+    {
+    case 1:
+        SnakeHeadX--;
+        break;
+    case 2:
+        SnakeHeadX++;
+        break;
+    case 3:
+        SnakeHeadY--;
+        break;
+    case 4:
+        SnakeHeadY++;
+        break;
+    default:
+        break;
+    }
+    if (SnakeHeadX >= Width)
+    {
+        SnakeHeadX = 0;
+    }
+    else if (SnakeHeadX < 0)
+    {
+        SnakeHeadX = Width - 1;
+    }
+    if (SnakeHeadY >= Height)
+    {
+        SnakeHeadY = 0;
+    }
+    else if (SnakeHeadY < 0)
+    {
+        SnakeHeadY = Height - 1;
+    }
+    for (int i = 0; i < SnakeBodyCount; i++)
+    {
+        if (SnakeX[i] == SnakeHeadX && SnakeY[i] == SnakeHeadY)
+        {
+            GameOver = true;
+        }
+    }
+    if (SnakeHeadX == FruitX && SnakeHeadY == FruitY)
+    {
+        SnakeBodyCount++;
+        FruitX = rand() % Width;
+        FruitY = rand() % Height;
+    }
+
+}
+
