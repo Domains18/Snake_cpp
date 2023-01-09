@@ -312,4 +312,54 @@ void SnakeGame::PrintStage()
     }
 
 }
+void SnakeGame::PlayGame() {
+	SetupGame();
+	while (!GameOver)
+	{
+		PrintStage();
+		ControllerInput();
+		PlayStage();
+		Sleep(100);
+	}
+}
+void SnakeGame::StartGame() {
+	char opt = '\0';
+	while (true) {
+		system("cls");
+		DisplayMainMenu();
+		opt = _getch();
+		system("cls");
+		switch (opt) {
+		case '1':
+			PlayGame();
+			system("cls");
+			DisplayGameOver();
+			_getch();
+			break;
+		case '2':
+			DisplayInstructions();
+			_getch();
+			break;
+		case '3':
+			DisplayCredits();
+			_getch();
+			break;
+		case '4':
+			cout << "Closing Snake Game";
+			for (int i = 0; i < 4; i++) {
+				Sleep(600);
+				cout << ".";
+				exit(-1);
+			}
+			break;
+		default:
+			break;
+		}
+	}
+}
 
+int main() {
+	SnakeGame Snake;
+	Snake.StartGame();
+	return 0;
+}
