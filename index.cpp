@@ -147,3 +147,34 @@ void SnakeGame::DisplayCredits() {
 	cout << " ||                                                                       ||\n";
 	cout << " ===========================================================================\n";
 }
+
+void SnakeGame::ControllerInput(){
+    if(_kbhit()){
+        switch(_getch()){
+            case 'a':
+                SnakeDirection = LEFT;
+                break;
+            case 'b':
+                SnakeDirection = RIGHT;
+                break;
+            case 'c':
+                SnakeDirection = UP;
+                break;
+            case 'd':
+                SnakeDirection = DOWN;
+                break;
+            case 'w':
+                SnakeDirection = LEFT;
+                break;
+            case 's':
+                SnakeDirection = RIGHT;
+                break;
+            case 'f':
+                SnakeDirection = DOWN;
+                break;
+            case 't':
+                SnakeDirection = UP;
+                break;
+        }
+    }
+}
